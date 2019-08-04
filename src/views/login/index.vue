@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import store from '@/store'
 export default {
   data () {
     // 声明校验函数
@@ -74,6 +75,8 @@ export default {
               this.loginForm
             )
             .then(res => {
+              // 存储用户信息
+              store.setUser(res.data.data)
               // res响应对象 包含响应主体
               this.$router.push('/')
             })
