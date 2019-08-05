@@ -10,5 +10,8 @@ export default {
   getUser () {
     //   JSON.parse()将json数据格式转换为对象
     return JSON.parse(window.sessionStorage.getItem(KEY) || '{}')
+  },
+  clearUser () {
+    window.sessionStorage.removeItem(KEY)
   }
 }
