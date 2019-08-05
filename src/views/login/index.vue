@@ -66,24 +66,34 @@ export default {
   },
   methods: {
     login () {
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.loginForm.validate(async valid => {
         if (valid) {
           // 请求登录接口
-          this.$http
-            .post(
-              'http://ttapi.research.itcast.cn/mp/v1_0/authorizations',
-              this.loginForm
-            )
-            .then(res => {
-              // 存储用户信息
-              store.setUser(res.data.data)
-              // res响应对象 包含响应主体
-              this.$router.push('/')
-            })
-            .catch(() => {
-              // 提示错误
-              this.$message.error('手机号或密码错误')
-            })
+          // this.$http
+          //   .post(
+          //     'http://ttapi.research.itcast.cn/mp/v1_0/authorizations',
+          //     this.loginForm
+          //   )
+          //   .then(res => {
+          //     // 存储用户信息
+          //     store.setUser(res.data.data)
+          //     // res响应对象 包含响应主体
+          //     this.$router.push('/')
+          //   })
+          //   .catch(() => {
+          //     // 提示错误
+          //     this.$message.error('手机号或密码错误')
+          //   })
+          // async&await使用 try{}catch(e)捕获异常
+          try {
+            const {
+              data: { data }
+            } = await this.$http.post('authorizations', this.loginForm)
+            store.setUser(data)
+            this.$router.push('/')
+          } catch (e) {
+            this.$message.error('手机号或密码错误')
+          }
         }
       })
     }
