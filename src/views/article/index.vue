@@ -3,7 +3,7 @@
     <!-- //筛选条件 -->
     <el-card>
       <div slot="header">
-        <my-bread>素材管理</my-bread>
+        <my-bread>内容管理</my-bread>
       </div>
       <el-form laber-width="80px" size="small">
         <el-form-item label="状态：">
