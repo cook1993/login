@@ -8,6 +8,7 @@ import Notfonud from '@/views/404'
 import store from '@/store'
 import Image from '@/views/image'
 import Publish from '@/views/publish'
+import Comment from '@/views/comment'
 Vue.use(VueRouter)
 const router = new VueRouter({
   routes: [
@@ -44,6 +45,11 @@ const router = new VueRouter({
           path: '/publish',
           name: 'publish',
           component: Publish
+        },
+        {
+          path: '/comment',
+          name: 'comment',
+          component: Comment
         }
       ]
     },
