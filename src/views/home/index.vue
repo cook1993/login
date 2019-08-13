@@ -35,7 +35,7 @@
           <i class="el-icon-present"></i>
           <span slot="title">粉丝管理</span>
         </el-menu-item>
-        <el-menu-item index="/settinng">
+        <el-menu-item index="/setting">
           <i class="el-icon-setting"></i>
           <span slot="title">个人设置</span>
         </el-menu-item>
@@ -66,6 +66,7 @@
 
 <script>
 import Store from '@/store'
+import eventBus from '@/components/eventBus'
 export default {
   data () {
     return {
@@ -75,6 +76,14 @@ export default {
     }
   },
   created () {
+    // 更新名称
+    eventBus.$on('updateName', (name) => {
+      this.name = name
+    })
+    // 更新头像
+    eventBus.$on('updatePhoto', (photo) => {
+      this.photo = photo
+    })
     // 本地获取用户信息
     const user = Store.getUser()
     this.name = user.name

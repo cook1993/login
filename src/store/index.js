@@ -5,8 +5,11 @@ const KEY = 'key'
 export default {
   setUser (user) {
     // 存储用户信息到sessionStorage
-    window.sessionStorage.setItem(KEY, JSON.stringify(user))
+    const locaUser = this.getUser()
+    const nowUser = { ...locaUser, ...user }
+    window.sessionStorage.setItem(KEY, JSON.stringify(nowUser))
   },
+
   getUser () {
     //   JSON.parse()将json数据格式转换为对象
     return JSON.parse(window.sessionStorage.getItem(KEY) || '{}')
